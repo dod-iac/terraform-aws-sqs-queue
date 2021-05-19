@@ -69,6 +69,10 @@
  * }
  * ```
  *
+ * ## Testing
+ *
+ * Run tests using the `terratest` script.  If using `aws-vault` you could use, `aws-vault exec AWS_PROFILE -- terratest`.
+ *
  * ## Terraform Version
  *
  * Terraform 0.13. Pin module version to ~> 1.0.0 . Submit pull-requests to master branch.
