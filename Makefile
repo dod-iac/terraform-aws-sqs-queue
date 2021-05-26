@@ -19,7 +19,7 @@ fmt:  ## Format Go source code
 .PHONY: imports
 imports: bin/goimports ## Update imports in Go source code
 	# If missing, install goimports with: go get golang.org/x/tools/cmd/goimports
-	bin/goimports -w -local github.com/dod-iac/terraform-aws-sqs-queue,github.com/dod-iac $$(find . -iname '*.go')
+	bin/goimports -w -local github.com/gruntwork-io/terratest,github.com/aws/aws-sdk-go,github.com/dod-iac,github.com/dod-iac/terraform-aws-sqs-queue $$(find . -iname '*.go')
 
 .PHONY: test_go
 lint_go: bin/errcheck bin/ineffassign bin/staticcheck bin/shadow ## Run Go tests
