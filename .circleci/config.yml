@@ -38,8 +38,8 @@ jobs:
             curl -sSLO https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz
             [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = 7154e88f5a8047aad4b80ebace58a059e36e7e2e4eb3b383127a28c711b4ff59 ]
             tar -xzvf go${GO_VERSION}.linux-amd64.tar.gz
-            chmod 755 go${GO_VERSION}.linux-amd64
-            mv go${GO_VERSION}.linux-amd64 ~/bin/go
+            mv go /usr/local
+            echo 'export PATH=$PATH:/usr/local/go/bin' >> $BASH_ENV
           environment:
             GO_VERSION: "1.16.4"
             GO_CHECKSUM: "7154e88f5a8047aad4b80ebace58a059e36e7e2e4eb3b383127a28c711b4ff59"
