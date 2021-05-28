@@ -70,7 +70,7 @@ module "sqs_queue" {
 
 ## Testing
 
-Run tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION`, `TT_ACCOUNT_ID`, and `TT_USER_ARN` environment variables are required by the tests.
+Run tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION`, `TT_ACCOUNT_ID`, and `TT_USER_ARN` environment variables are required by the tests.  Use `TT_SKIP_DESTROY=1` to not destroy the infrastructure created during the tests.
 
 ## Terraform Version
 

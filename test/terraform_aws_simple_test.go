@@ -46,7 +46,7 @@ func TestTerraformSimpleExample(t *testing.T) {
 		},
 	})
 
-	if os.Getenv("SKIP_TF_DESTROY") != "1" {
+	if os.Getenv("TT_SKIP_DESTROY") != "1" {
 		defer terraform.Destroy(t, terraformOptions)
 	}
 

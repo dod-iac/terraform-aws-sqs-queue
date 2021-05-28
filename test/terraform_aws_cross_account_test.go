@@ -44,7 +44,7 @@ func TestTerraformCrossAccountExample(t *testing.T) {
 			"AWS_DEFAULT_REGION": region,
 		},
 	})
-	if os.Getenv("SKIP_TF_DESTROY") != "1" {
+	if os.Getenv("TT_SKIP_DESTROY") != "1" {
 		defer terraform.Destroy(t, terraformOptions)
 	}
 	terraform.InitAndApply(t, terraformOptions)
