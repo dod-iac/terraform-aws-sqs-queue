@@ -13,6 +13,24 @@ data "aws_region" "current" {}
 
 data "aws_partition" "current" {}
 
+module "sqs_kms_key" {
+  source  = "dod-iac/sqs-kms-key/aws"
+  version = "1.0.0"
+
+  name        = format("alias/sqs-%s", var.test_name)
+  description = format("Test %s", var.test_name)
+
+  principals = flatten([
+    format(
+      "arn:%s:iam::%s:root",
+      data.aws_partition.current.partition,
+      var.account_id,
+    ),
+  ])
+
+  tags = var.tags
+}
+
 data "aws_iam_policy_document" "sqs_policy" {
   policy_id = "queue-policy"
   statement {
@@ -43,6 +61,8 @@ data "aws_iam_policy_document" "sqs_policy" {
 
 module "sqs_queue" {
   source  = "../../"
+
+  kms_key_arn = module.sqs_kms_key.aws_kms_key_arn
   name = var.test_name
   policy = data.aws_iam_policy_document.sqs_policy.json
 }

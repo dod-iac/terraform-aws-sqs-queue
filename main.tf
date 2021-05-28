@@ -71,7 +71,7 @@
  *
  * ## Testing
  *
- * Run tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION`, `TT_ACCOUNT_ID`, and `TT_USRE_ARN` environment variables are required by the tests.
+ * Run tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION`, `TT_ACCOUNT_ID`, and `TT_USER_ARN` environment variables are required by the tests.
  *
  * ## Terraform Version
  *
