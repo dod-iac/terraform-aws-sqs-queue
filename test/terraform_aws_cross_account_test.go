@@ -12,35 +12,32 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"github.com/stretchr/testify/require"
 
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformXAccountExample(t *testing.T) {
+func TestTerraformCrossAccountExample(t *testing.T) {
 	t.Parallel()
 
 	region := os.Getenv("AWS_DEFAULT_REGION")
-	if len(region) == 0 {
-		t.Fatal("missing environment variable AWS_DEFAULT_REGION")
-	}
+	require.NotEmpty(t, region, "missing environment variable AWS_DEFAULT_REGION")
 
-	account_id := os.Getenv("XACCOUNT_ACCOUNT_ID")
-	if len(account_id) == 0 {
-		t.Fatal("missing environment variable XACCOUNT_ACCOUNT_ID")
-	}
+	accountID := os.Getenv("TT_ACCOUNT_ID")
+	require.NotEmpty(t, region, "missing environment variable TT_ACCOUNT_ID")
 
-	testName := fmt.Sprintf("terratest-sqs-queue-xaccount-%s", strings.ToLower(random.UniqueId()))
+	testName := fmt.Sprintf("terratest-sqs-queue-cross-account-%s", strings.ToLower(random.UniqueId()))
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../examples/xaccount",
+		TerraformDir: "../examples/cross_account",
 		Vars: map[string]interface{}{
-			"account_id": account_id,
+			"account_id": accountID,
 			"test_name":  testName,
 			"tags": map[string]interface{}{
 				"Automation": "Terraform",
 				"Terratest":  "yes",
-				"Test":       "TestTerraformXAccountExample",
+				"Test":       "TestTerraformCrossAccountExample",
 			},
 		},
 		EnvVars: map[string]string{

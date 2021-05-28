@@ -52,16 +52,16 @@ func TestTerraformSimpleExample(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	queue_url := terraform.Output(t, terraformOptions, "queue_url")
+	queueURL := terraform.Output(t, terraformOptions, "queue_url")
 
 	s := session.Must(session.NewSession())
 
 	c := sqs.New(s, aws.NewConfig().WithRegion(region))
 
-	messageBody := "test"
+	messageBody := "test-"+strings.ToLower(random.UniqueId())
 
 	_, sendMessageError := c.SendMessage(&sqs.SendMessageInput{
-		QueueUrl:    aws.String(queue_url),
+		QueueUrl:    aws.String(queueURL),
 		MessageBody: aws.String(messageBody),
 	})
 
@@ -70,7 +70,7 @@ func TestTerraformSimpleExample(t *testing.T) {
 	waitTimeSeconds := int64(5)
 
 	receiveMessageOutput, recieveMessageError := c.ReceiveMessage(&sqs.ReceiveMessageInput{
-		QueueUrl:        aws.String(queue_url),
+		QueueUrl:        aws.String(queueURL),
 		WaitTimeSeconds: aws.Int64(waitTimeSeconds),
 	})
 
