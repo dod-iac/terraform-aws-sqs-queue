@@ -35,7 +35,7 @@ imports: bin/goimports ## Update imports in Go source code
 
 .PHONY: test_go
 lint_go: bin/errcheck bin/ineffassign bin/staticcheck bin/shadow ## Run Go tests
-	bash scripts/lint-go
+	bash scripts/lint-go 2>&1
 
 vet: ## Vet Go source code
 	go vet $$(go list ./...)
