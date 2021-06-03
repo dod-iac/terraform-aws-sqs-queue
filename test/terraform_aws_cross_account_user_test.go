@@ -25,7 +25,7 @@ func TestTerraformCrossAccountUserExample(t *testing.T) {
 	require.NotEmpty(t, region, "missing environment variable AWS_DEFAULT_REGION")
 
 	userARN := os.Getenv("TT_USER_ARN")
-	require.NotEmpty(t, region, "missing environment variable TT_USER_ARN")
+	require.NotEmpty(t, userARN, "missing environment variable TT_USER_ARN")
 
 	testName := fmt.Sprintf("terratest-sqs-queue-cross-account-user-%s", strings.ToLower(random.UniqueId()))
 
