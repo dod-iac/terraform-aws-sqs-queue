@@ -27,6 +27,12 @@ variable "policy" {
   default     = ""
 }
 
+variable "source_queues" {
+  type        = list(string)
+  description = "The ARN of the queues that use this queue as a dead-letter queue."
+  default     = []
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags applied to the SQS queue."
