@@ -94,7 +94,7 @@ resource "aws_sqs_queue" "main" {
   name              = var.name
   kms_master_key_id = length(var.kms_key_arn) > 0 ? var.kms_key_arn : null
   policy            = length(var.policy) > 0 ? var.policy : null
-  redrive_allow_policy = length(var.source_queues) > 0 ? null : jsonencode({
+  redrive_allow_policy = length(var.source_queues) == 0 ? null : jsonencode({
     redrivePermission = "byQueue",
     sourceQueueArns   = var.source_queues
   })
