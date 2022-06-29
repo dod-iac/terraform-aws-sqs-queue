@@ -40,7 +40,7 @@ data "aws_iam_policy_document" "sqs_policy" {
     ]
     effect = "Allow"
     principals {
-      type        = "AWS"
+      type = "AWS"
       identifiers = [
         format(
           "arn:%s:iam::%s:root",
@@ -60,9 +60,9 @@ data "aws_iam_policy_document" "sqs_policy" {
 }
 
 module "sqs_queue" {
-  source  = "../../"
+  source = "../../"
 
   kms_key_arn = module.sqs_kms_key.aws_kms_key_arn
-  name = var.test_name
-  policy = data.aws_iam_policy_document.sqs_policy.json
+  name        = var.test_name
+  policy      = data.aws_iam_policy_document.sqs_policy.json
 }

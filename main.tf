@@ -91,9 +91,13 @@ data "aws_region" "current" {}
 data "aws_partition" "current" {}
 
 resource "aws_sqs_queue" "main" {
-  name                       = var.name
-  kms_master_key_id          = length(var.kms_key_arn) > 0 ? var.kms_key_arn : null
-  policy                     = length(var.policy) > 0 ? var.policy : null
+  name              = var.name
+  kms_master_key_id = length(var.kms_key_arn) > 0 ? var.kms_key_arn : null
+  policy            = length(var.policy) > 0 ? var.policy : null
+  redrive_policy = var.max_receive_count <= 0 || length(var.dead_letter_queue) == 0 ? null : jsonencode({
+    deadLetterTargetArn = var.dead_letter_queue
+    maxReceiveCount     = var.max_receive_count
+  })
   tags                       = var.tags
   visibility_timeout_seconds = var.visibility_timeout_seconds
 }

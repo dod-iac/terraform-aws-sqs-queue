@@ -113,7 +113,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_dead_letter_queue"></a> [dead\_letter\_queue](#input\_dead\_letter\_queue) | The ARN of the dead-letter queue. | `string` | `""` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | The ARN of the KMS key used to encrypt messages at-rest. | `string` | `""` | no |
+| <a name="input_max_receive_count"></a> [max\_receive\_count](#input\_max\_receive\_count) | The maximum number of receives for a message before it is moved to the dead-letter queue. | `number` | `10` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the SQS queue. | `string` | n/a | yes |
 | <a name="input_policy"></a> [policy](#input\_policy) | The JSON policy for the SQS queue. | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to the SQS queue. | `map(string)` | `{}` | no |
