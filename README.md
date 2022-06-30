@@ -78,6 +78,10 @@ Terraform 0.13. Pin module version to ~> 1.0.0 . Submit pull-requests to master 
 
 Terraform 0.11 and 0.12 are not supported.
 
+## Known Issues
+
+AWS GovCloud does not yet support custom redrive allow policies as implemented by the `source_queues` variable.  The default policy allows all queues in the account to use the dead-letter queue.
+
 ## License
 
 This project constitutes a work of the United States Government and is not subject to domestic copyright protection under 17 USC § 105.  However, because the project utilizes code licensed from contributors and other third parties, it therefore is licensed under the MIT License.  See LICENSE file for more information.
@@ -113,9 +117,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_dead_letter_queue"></a> [dead\_letter\_queue](#input\_dead\_letter\_queue) | The ARN of the dead-letter queue. | `string` | `""` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | The ARN of the KMS key used to encrypt messages at-rest. | `string` | `""` | no |
+| <a name="input_max_receive_count"></a> [max\_receive\_count](#input\_max\_receive\_count) | The maximum number of receives for a message before it is moved to the dead-letter queue. | `number` | `10` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the SQS queue. | `string` | n/a | yes |
 | <a name="input_policy"></a> [policy](#input\_policy) | The JSON policy for the SQS queue. | `string` | `""` | no |
+| <a name="input_source_queues"></a> [source\_queues](#input\_source\_queues) | The ARN of the queues that use this queue as a dead-letter queue. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to the SQS queue. | `map(string)` | `{}` | no |
 | <a name="input_visibility_timeout_seconds"></a> [visibility\_timeout\_seconds](#input\_visibility\_timeout\_seconds) | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | `number` | `30` | no |
 

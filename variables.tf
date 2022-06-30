@@ -1,7 +1,19 @@
+variable "dead_letter_queue" {
+  type        = string
+  description = "The ARN of the dead-letter queue."
+  default     = ""
+}
+
 variable "kms_key_arn" {
   type        = string
   description = "The ARN of the KMS key used to encrypt messages at-rest."
   default     = ""
+}
+
+variable "max_receive_count" {
+  type        = number
+  description = "The maximum number of receives for a message before it is moved to the dead-letter queue."
+  default     = 10
 }
 
 variable "name" {
@@ -13,6 +25,12 @@ variable "policy" {
   type        = string
   description = "The JSON policy for the SQS queue."
   default     = ""
+}
+
+variable "source_queues" {
+  type        = list(string)
+  description = "The ARN of the queues that use this queue as a dead-letter queue."
+  default     = []
 }
 
 variable "tags" {

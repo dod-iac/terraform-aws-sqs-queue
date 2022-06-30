@@ -28,9 +28,9 @@ module "sqs_kms_key" {
 }
 
 module "sqs_queue" {
-  source  = "../../"
+  source = "../../"
 
   kms_key_arn = module.sqs_kms_key.aws_kms_key_arn
-  name = var.test_name
-  tags = var.tags
+  name        = var.test_name
+  tags        = var.tags
 }
