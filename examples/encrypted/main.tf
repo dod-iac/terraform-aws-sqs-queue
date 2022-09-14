@@ -11,7 +11,7 @@ data "aws_partition" "current" {}
 
 module "sqs_kms_key" {
   source  = "dod-iac/sqs-kms-key/aws"
-  version = "1.0.0"
+  version = "1.0.2"
 
   name        = format("alias/sqs-%s", var.test_name)
   description = format("Test %s", var.test_name)
